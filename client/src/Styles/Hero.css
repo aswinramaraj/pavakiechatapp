@@ -1,0 +1,283 @@
+/* Hero Page Styles */
+.hero-container {
+  background-color: #F8F7FC;
+  min-height: 100vh;
+  padding: 60px 40px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+/* Header Section */
+.hero-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 0;
+  margin-bottom: 40px;
+}
+
+.hero-header-buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.btn-get-started {
+  background-color: #8A48F2;
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-get-started:hover {
+  background-color: #7B42F6;
+  transform: scale(1.05);
+  transform: translateY(-5px);
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.btn-sign-in {
+  background-color: white;
+  color: #2D1C49;
+  border: 1px solid #DCDCDC;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-sign-in:hover {
+  border-color: #8A48F2;
+  color: #8A48F2;
+  transform: scale(1.05);
+  transform: translateY(-5px);
+}
+
+/* First Image Section - Hero with centered content */
+.hero-top-section {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero-icon {
+  width: 64px;
+  height: 64px;
+  background-color: #7B42F6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 32px;
+}
+
+.hero-icon svg {
+  width: 36px;
+  height: 36px;
+  fill: white;
+}
+
+.hero-title {
+  font-size: 48px;
+  font-weight: 800;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.hero-title .title-primary {
+  color: #2D1C49;
+}
+
+.hero-title .title-accent {
+  color: #7B42F6;
+}
+
+.hero-description {
+  font-size: 18px;
+  color: #6B6B6B;
+  max-width: 700px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+.hero-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.cta-btn-get-started {
+  background-color: #7B42F6;
+  color: white;
+  border: none;
+  padding: 16px 40px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-btn-get-started:hover {
+  background-color: #8A48F2;
+}
+
+.cta-btn-sign-in {
+  background-color: white;
+  color: #2D1C49;
+  border: 1px solid #DCDCDC;
+  padding: 16px 40px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.cta-btn-sign-in:hover {
+  border-color: #7B42F6;
+  color: #7B42F6;
+}
+
+/* Second Image Section - Feature Cards */
+.hero-features-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px;
+}
+
+.feature-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 60px;
+}
+
+.feature-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 40px 32px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.feature-icon-container {
+  width: 64px;
+  height: 64px;
+  background-color: #F0E8FA;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.feature-icon {
+  width: 32px;
+  height: 32px;
+  fill: #8A48F2;
+}
+
+.feature-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2D1C49;
+  margin-bottom: 16px;
+}
+
+.feature-description {
+  font-size: 16px;
+  color: #6B6B6B;
+  line-height: 1.6;
+}
+
+.trusted-text {
+  text-align: center;
+  color: #6B6B6B;
+  font-size: 16px;
+  margin-bottom: 60px;
+}
+
+/* Footer Icons */
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+
+.footer-icon-container {
+  width: 56px;
+  height: 56px;
+  background-color: white;
+  border: 1px solid #E0E0E0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.footer-icon-container:hover {
+  border-color: #8A48F2;
+  background-color: #F8F7FC;
+}
+
+.footer-icon {
+  width: 28px;
+  height: 28px;
+  fill: #2D1C49;
+}
+
+.footer-icon-container:hover .footer-icon {
+  fill: #8A48F2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 32px;
+  }
+
+  .hero-description {
+    font-size: 16px;
+  }
+
+  .feature-cards {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .hero-cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-btn-get-started,
+  .cta-btn-sign-in {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .hero-header-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-get-started,
+  .btn-sign-in {
+    width: 100%;
+  }
+}
+
