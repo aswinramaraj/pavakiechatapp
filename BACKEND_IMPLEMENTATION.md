@@ -3,7 +3,9 @@
 ## What Has Been Created
 
 ### 1. Dependencies Installed ✅
+
 All required packages have been installed:
+
 - **express** - Web framework
 - **mongoose** - MongoDB ODM
 - **dotenv** - Environment variables
@@ -15,63 +17,77 @@ All required packages have been installed:
 - **nodemon** - Development auto-restart
 
 ### 2. Server Setup ✅
+
 - **server.js** - Main server file with Express, CORS, error handling
 - **config/db.js** - MongoDB connection configuration
 
 ### 3. MongoDB Connection ✅
+
 - Database: `pavakie-chatapp`
 - Connection handled with Mongoose
 - Error handling and logging implemented
 
 ### 4. User Model ✅
+
 **server/models/User.js**
+
 - Schema: name, email, password, isEmailVerified, otp
 - Pre-save password hashing with bcrypt
 - OTP generation and verification methods
 - Email validation
 
 ### 5. Authentication Controller ✅
+
 **server/controllers/authController.js**
 
 Four main functions:
 
 #### a) `sendOTP`
+
 - Sends 6-digit OTP to email
 - Creates user if doesn't exist
 - Stores OTP with 10-minute expiration
 - Uses Nodemailer for email delivery
 
 #### b) `verifyOTP`
+
 - Validates OTP
 - Checks expiration
 - Returns success/error
 
 #### c) `signup`
+
 - Completes registration
 - Requires verified OTP
 - Updates user with name and password
 - Returns JWT token
 
 #### d) `signin`
+
 - Authenticates user
 - Checks email and password
 - Returns JWT token
 
 ### 6. Auth Routes ✅
+
 **server/routes/authRoutes.js**
+
 - `POST /api/auth/send-otp` - Send OTP
 - `POST /api/auth/verify-otp` - Verify OTP
 - `POST /api/auth/signup` - Register user
 - `POST /api/auth/signin` - Sign in user
 
 ### 7. Email Utility ✅
+
 **server/utils/sendEmail.js**
+
 - `sendEmail()` - General email sender
 - `sendOTPEmail()` - Beautiful HTML email for OTP
 - Uses Nodemailer with Gmail SMTP
 - Professional email template with styling
 
 ### 8. Configuration Files ✅
+
 - **env.example** - Environment variables template
 - **.gitignore** - Ignores node_modules and .env
 - **README.md** - Full documentation
@@ -80,6 +96,7 @@ Four main functions:
 ## Setup Instructions
 
 ### 1. Create .env File
+
 Create `.env` in the `server` directory:
 
 ```env
@@ -94,15 +111,18 @@ CLIENT_URL=http://localhost:3000
 ```
 
 ### 2. Configure Gmail
+
 1. Enable 2-Step Verification
 2. Generate App Password
 3. Use app password in EMAIL_PASS
 
 ### 3. Run MongoDB
+
 - Local MongoDB or MongoDB Atlas
 - Update MONGODB_URI accordingly
 
 ### 4. Start Server
+
 ```bash
 cd server
 npm run dev  # Development mode
@@ -111,8 +131,9 @@ npm run dev  # Development mode
 ## API Usage
 
 ### Send OTP
+
 ```bash
-POST http://localhost:5000/api/auth/send-otp
+POST https://pavakie-chatapp.onrender.com/api/auth/send-otp
 Content-Type: application/json
 
 {
@@ -121,8 +142,9 @@ Content-Type: application/json
 ```
 
 ### Verify OTP
+
 ```bash
-POST http://localhost:5000/api/auth/verify-otp
+POST https://pavakie-chatapp.onrender.com/api/auth/verify-otp
 Content-Type: application/json
 
 {
@@ -132,8 +154,9 @@ Content-Type: application/json
 ```
 
 ### Sign Up
+
 ```bash
-POST http://localhost:5000/api/auth/signup
+POST https://pavakie-chatapp.onrender.com/api/auth/signup
 Content-Type: application/json
 
 {
@@ -145,8 +168,9 @@ Content-Type: application/json
 ```
 
 ### Sign In
+
 ```bash
-POST http://localhost:5000/api/auth/signin
+POST https://pavakie-chatapp.onrender.com/api/auth/signin
 Content-Type: application/json
 
 {
@@ -171,12 +195,14 @@ Content-Type: application/json
 ### Frontend Integration
 
 1. **Update SignUp.jsx**:
+
    - Call `/api/auth/send-otp` on email input
    - Call `/api/auth/verify-otp` for verification
    - Call `/api/auth/signup` for final registration
    - Store JWT token
 
 2. **Update SignIn.jsx**:
+
    - Call `/api/auth/signin`
    - Store JWT token
    - Redirect to Main page
@@ -192,58 +218,67 @@ Content-Type: application/json
 // In SignUp.jsx
 const handleSendOtp = async () => {
   try {
-    const response = await fetch('http://localhost:5000/api/auth/send-otp', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: formData.email })
-    });
+    const response = await fetch(
+      "https://pavakie-chatapp.onrender.com/api/auth/send-otp",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: formData.email }),
+      }
+    );
     const data = await response.json();
     if (data.success) {
       // Show OTP input
     }
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
   }
 };
 
 const handleVerifyOtp = async () => {
   try {
-    const response = await fetch('http://localhost:5000/api/auth/verify-otp', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: formData.email, otp: otp })
-    });
+    const response = await fetch(
+      "https://pavakie-chatapp.onrender.com/api/auth/verify-otp",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: formData.email, otp: otp }),
+      }
+    );
     const data = await response.json();
     if (data.success) {
       setOtpVerified(true);
     }
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
   }
 };
 
 const handleSignUp = async (e) => {
   e.preventDefault();
   if (!otpVerified) return;
-  
+
   try {
-    const response = await fetch('http://localhost:5000/api/auth/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-        otp: otp
-      })
-    });
+    const response = await fetch(
+      "https://pavakie-chatapp.onrender.com/api/auth/signup",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+          otp: otp,
+        }),
+      }
+    );
     const data = await response.json();
     if (data.success) {
-      localStorage.setItem('token', data.token);
-      navigate('/main');
+      localStorage.setItem("token", data.token);
+      navigate("/main");
     }
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
   }
 };
 ```
@@ -265,6 +300,7 @@ const handleSignUp = async (e) => {
 ## Support
 
 For issues or questions:
+
 1. Check server/SETUP.md for setup help
 2. Check server/README.md for detailed docs
 3. Check MongoDB connection logs
@@ -299,4 +335,3 @@ pavakie-chatapp/
 ## Status: ✅ COMPLETE
 
 All backend functionality has been implemented and is ready for testing!
-

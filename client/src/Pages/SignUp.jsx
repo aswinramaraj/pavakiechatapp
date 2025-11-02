@@ -34,7 +34,8 @@ const SignUp = () => {
     // Call server to send OTP
     (async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/auth/send-otp', {
+        const backend = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+        const res = await fetch(`${backend}/api/auth/send-otp`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: formData.email })
@@ -63,7 +64,8 @@ const SignUp = () => {
 
     (async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/auth/verify-otp', {
+        const backend = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+        const res = await fetch(`${backend}/api/auth/verify-otp`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: formData.email, otp })
@@ -101,7 +103,8 @@ const SignUp = () => {
 
     (async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/auth/signup', {
+        const backend = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+        const res = await fetch(`${backend}/api/auth/signup`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

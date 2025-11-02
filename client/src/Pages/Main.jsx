@@ -99,7 +99,8 @@ const Main = () => {
     const token = localStorage.getItem('token');
     if (!token) return;
 
-    const newSocket = io('http://localhost:5000', { auth: { token } });
+  const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+  const newSocket = io(backendUrl, { auth: { token } });
     setSocket(newSocket);
 
     newSocket.on('connect', () => {
