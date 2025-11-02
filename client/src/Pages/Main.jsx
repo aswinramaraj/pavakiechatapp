@@ -534,12 +534,12 @@ const Main = () => {
                   <img src={selectedFriend.avatar} alt={selectedFriend.name} className="chat-avatar" />
                 ) : (
                   <div className="chat-avatar-placeholder">
-                    {selectedFriend.name.charAt(0).toUpperCase()}
+                    {/* {selectedFriend.name.charAt(0).toUpperCase()} */}
                   </div>
                 )}
                 <div className="chat-user-details">
                   <h3>{selectedFriend.name}</h3>
-                  <p>{selectedFriend.email}</p>
+                  {/* <p>{selectedFriend.email}</p> */}
                 </div>
               </div>
             </div>
@@ -593,8 +593,10 @@ const Main = () => {
                 onClick={handleSendMessage}
                 disabled={!newMessage.trim()}
               >
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                {/* Simple paper-plane SVG (reliable display without FontAwesome) */}
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                 </svg>
               </button>
             </div>
