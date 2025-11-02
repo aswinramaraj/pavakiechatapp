@@ -16,7 +16,9 @@ const server = http.createServer(app);
 // Initialize Socket.IO
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_URL || "http://localhost:3000",
+    // Allow the client origin configured in env (useful for deployed frontend).
+    // Fallback to allowing all origins so socket connections from dev don't get blocked.
+    origin: process.env.CLIENT_URL || "*",
     methods: ["GET", "POST"]
   }
 });
@@ -89,8 +91,24 @@ app.use((req, res) => {
 // Start server
 const PORT = process.env.PORT || 5000;
 
-server.listen(PORT, () => {
+// Tweak keepAlive and headersTimeout to reduce connection reset/timeouts on some hosts (Render recommends higher values)
+// headersTimeout must be greater than keepAliveTimeout
+server.keepAliveTimeout = 120000; // 120 seconds
+server.headersTimeout = 125000; // slightly higher than keepAliveTimeout
+
+// Bind explicitly to 0.0.0.0 on some hosting providers (like Render) to ensure the service is reachable
+server.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
+});
+
+// Graceful logging for unhandled rejections and exceptions to aid debugging in production
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+});
+
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception thrown:', err);
+  // In production you might choose to exit the process and rely on the host to restart it
 });
 
 module.exports = app;
